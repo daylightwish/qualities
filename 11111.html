@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Qualities</title>
+	<style>
+		body {
+			background-color: #000000;
+			background-image: url('https://i.ibb.co/rd28YH2/S1OsrYY.jpg');
+			background-size: cover;
+			background-position: center;
+		}
+
+		#quality {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 5em;
+			color: #FFF;
+			opacity: 0;
+			transition: opacity 1s ease-in-out;
+		}
+
+		#name {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			font-size: 2em;
+			animation: change-colors 10s linear infinite;
+		}
+
+		@keyframes change-colors {
+			0% {
+				color: #FF0000;
+			}
+			25% {
+				color: #00FF00;
+			}
+			50% {
+				color: #0000FF;
+			}
+			75% {
+				color: #FFFF00;
+			}
+			100% {
+				color: #FF00FF;
+			}
+		}
+	</style>
+</head>
+<body>
+	<audio id="myAudio" src="https://onedrive.live.com/download?cid=2FFACAA6156FF655&resid=2FFACAA6156FF655%212810&authkey=AHd6RlH_MZM1jh8" autoplay loop></audio>
+	<div id="quality">Quality 1</div>
+	<div id="name">Masih Khatiz</div>
+
+	<script>
+		const qualities = ["Reliable", "Hardworking", "Motivated", "Team-player", "Problem Solver", "Positive attitude", "Effective communicator", "Punctual"];
+		let currentQualityIndex = 0;
+		const qualityElement = document.getElementById('quality');
+		const audioElement = document.getElementById("myAudio");
+		let isPlaying = true;
+
+		function toggleAudio() {
+			if (isPlaying) {
+				audioElement.pause();
+			} else {
+				audioElement.play();
+			}
+			isPlaying = !isPlaying;
+		}
+
+		function showNextQuality() {
+			currentQualityIndex++;
+			if (currentQualityIndex >= qualities.length) {
+				currentQualityIndex = 0;
+			}
+			qualityElement.style.opacity = 0;
+			setTimeout(() => {
+				qualityElement.innerHTML = qualities[currentQualityIndex];
+				qualityElement.style.opacity = 1;
+			}, 1000);
+			setTimeout(showNextQuality, 4000);
+		}
+
+		showNextQuality();
+	</script>
+</body>
+</html>
